@@ -17,6 +17,7 @@ import cf.iesguara.proyecto01Spring.service.CocheService;
 public class CocheServiceImpl implements CocheService {
 
 	private CocheRepository cocheRepository;
+
 	@Autowired
 	private FabricanteRepository fabricanteRepository;
 
@@ -40,6 +41,7 @@ public class CocheServiceImpl implements CocheService {
 		Optional<Coche> result = cocheRepository.findById(id);
 		if (result.isPresent()) {
 			coche.setId(id);
+			coche.setFabricante(result.get().getFabricante());
 			return cocheRepository.save(coche);
 		} else {
 			throw new RecursoNoEncontradoException("Coche", "id", id);
@@ -74,7 +76,7 @@ public class CocheServiceImpl implements CocheService {
 	@Override
 	public Coche delete(Coche coche) {
 		cocheRepository.delete(coche);
-		return coche; 
+		return coche;
 	}
 
 }

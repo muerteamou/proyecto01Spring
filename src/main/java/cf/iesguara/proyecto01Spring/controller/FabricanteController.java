@@ -27,14 +27,12 @@ public class FabricanteController {
 		this.fabricanteService = fabricanteService;
 	}
 
-	// Aqui empieza la APIREST
-
 	@PostMapping
 	public ResponseEntity<Fabricante> save(@RequestBody Fabricante fabricante) {
 
 		return new ResponseEntity<Fabricante>(fabricanteService.save(fabricante), HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/name/{name}")
 	public ResponseEntity<Fabricante> getByName(@PathVariable("name") String name) {
 		return new ResponseEntity<Fabricante>(fabricanteService.findByName(name), HttpStatus.OK);
@@ -55,7 +53,6 @@ public class FabricanteController {
 			@RequestBody Fabricante fabricante) {
 		return new ResponseEntity<Fabricante>(fabricanteService.update(idFabricante, fabricante), HttpStatus.ACCEPTED);
 	}
-	
 
 	@DeleteMapping("{id}")
 	public ResponseEntity<Fabricante> delete(@PathVariable("id") long idFabricante) {

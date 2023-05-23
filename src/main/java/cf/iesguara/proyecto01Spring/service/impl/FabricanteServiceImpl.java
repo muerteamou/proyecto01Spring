@@ -22,7 +22,6 @@ public class FabricanteServiceImpl implements FabricanteService {
 		this.fabricanteRepository = fabricanteRepository;
 	}
 
-
 	@Override
 	public Fabricante save(Fabricante fabricante) {
 		return fabricanteRepository.save(fabricante);
@@ -50,6 +49,7 @@ public class FabricanteServiceImpl implements FabricanteService {
 		Optional<Fabricante> result = fabricanteRepository.findById(id);
 		if (result.isPresent()) {
 			fabricante.setId(id);
+			fabricante.setCoches(result.get().getCoches());
 			return fabricanteRepository.save(fabricante);
 		} else {
 			throw new RecursoNoEncontradoException("Fabricante", "id", id);
@@ -62,6 +62,7 @@ public class FabricanteServiceImpl implements FabricanteService {
 		Optional<Fabricante> result = fabricanteRepository.findById(id);
 		if (result.isPresent()) {
 			fabricanteRepository.deleteById(id);
+
 			return result.get();
 		} else {
 			throw new RecursoNoEncontradoException("Fabricante", "id", id);
@@ -77,9 +78,7 @@ public class FabricanteServiceImpl implements FabricanteService {
 		} else {
 			throw new RecursoNoEncontradoException("Fabricante", "name", name);
 		}
-
 	}
-
 
 	@Override
 	public Fabricante update(Fabricante fabricante) {

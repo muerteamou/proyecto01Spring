@@ -16,26 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 import cf.iesguara.proyecto01Spring.model.Coche;
 import cf.iesguara.proyecto01Spring.service.CocheService;
 
-
 @RestController
 @RequestMapping("/coches")
 public class CocheController {
 
 	private CocheService cocheService;
 
-
 	public CocheController(CocheService cocheService) {
 		super();
 		this.cocheService = cocheService;
 	}
 
-	// Aqui empieza la APIREST
-
 	@PostMapping("/{fabricante}")
 	public ResponseEntity<Coche> save(@PathVariable("fabricante") String name, @RequestBody Coche coche) {
-
-		//Fabricante fabricante = fabricanteService.find(coche.getFabricante().getId());
-		//coche.setFabricante(fabricante);
 		return new ResponseEntity<Coche>(cocheService.save(coche, name), HttpStatus.CREATED);
 	}
 
@@ -43,11 +36,6 @@ public class CocheController {
 	public List<Coche> findAll() {
 		return cocheService.findAll();
 	}
-
-//	@GetMapping("{fabricante/name}")
-//	public List<Coche> findByManufacturer(@PathVariable("name") String name) {
-//		return (List<Coche>) cocheService.findByManufacturer(name);
-//	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<Coche> findById(@PathVariable("id") long id) {
@@ -63,7 +51,5 @@ public class CocheController {
 	public ResponseEntity<Coche> delete(@PathVariable("id") long idCoche) {
 		return new ResponseEntity<Coche>(cocheService.delete(idCoche), HttpStatus.ACCEPTED);
 	}
-	
-
 
 }

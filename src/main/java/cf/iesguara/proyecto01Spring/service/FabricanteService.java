@@ -13,10 +13,10 @@ public interface FabricanteService {
 	public Fabricante find(long id);
 
 	public Fabricante update(long id, Fabricante fabricante);
-	
+
 	public Fabricante delete(long id);
-	
+
 	public Fabricante findByName(String name);
-	
+
 	public Fabricante update(Fabricante fabricante);
 }
